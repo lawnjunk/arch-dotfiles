@@ -48,4 +48,24 @@ backup:
 
 plant: backup
 	echo "BOOYA"
+	cp -f $(DOTREPO)/bashrc  ${HOME}/.bashrc
+	cp -f $(DOTREPO)/vimrc  ${HOME}/.vimrc
+	cp -f $(DOTREPO)/viewrc  ${HOME}/.viewrc
+	cp -f $(DOTREPO)/gitconfig  ${HOME}/.gitconfig
+	cp -f $(DOTREPO)/tmux.conf  ${HOME}/.tmux.conf
+	cp -f $(DOTREPO)/tern-project  ${HOME}/.tern-project
+	cp -rf $(DOTREPO)/sh/  ${HOME}/.sh/*
+	cp -f $(DOTREPO)/psqlrc  $(HOME)/.psqlrc
+	cp -f $(DOTREPO)/alias  $(HOME)/.alias
+	cp -f $(DOTREPO)/zshrc  $(HOME)/.zshrc
+	cp -f $(DOTREPO)/awesome.theme.lua  $(HOME)/.config/awesome/theme.lua
+	cp -f $(DOTREPO)/awesome.rc.lua  $(HOME)/.config/awesome/rc.lua
+	cp -f $(DOTREPO)/xinitrc  $(HOME)/.xinitrc
+	cp -f $(DOTREPO)/jshintrc  $(HOME)/.jshintrc
+	cp -f $(DOTREPO)/Xauthority  $(HOME)/.Xauthority
+	cp -f $(DOTREPO)/viewrc  $(HOME)/.viewrc
+	cp -f $(DOTREPO)/mongorc.js  $(HOME)/.mongorc.js
+	cp -f $(DOTREPO)/conkyrc  $(HOME)/.conkyrc
+	cp -f $(DOTREPO)/Xresources  $(HOME)/.Xresources
+	cp -f $(DOTREPO)/zlogin  $(HOME)/.zlogin
 
