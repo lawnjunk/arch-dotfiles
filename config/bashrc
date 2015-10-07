@@ -1,0 +1,50 @@
+# setup get aware prompt
+#export GITAWAREPROMPT=$HOME/.sh/git-aware-prompt
+#source "${GITAWAREPROMPT}/main.sh"
+
+# setup auto completion for git commands
+#source $HOME/.bash/git-completion.sh
+
+WHT="\e[90m" #light black
+RED="\e[91m" #light red
+GRN="\e[92m" #light green
+YLW="\e[93m" #light yellow
+BLU="\e[94m" #light blue
+PNK="\e[95m" #light magenta
+CYN="\e[96m" #light cyan
+WHT="\e[97m" #light white
+FGD="\e[39m" #light default foreground color
+
+# set PS1 (prompt)
+export PS1="\[$GRN\]\u\[$WHT\]@\[$GRN\]\h \[$RED\]\W \[$CYN\]\$git_branch\[$RED\]\$git_dirty\[$FGD\]\$ "
+
+export PATH=$HOME/.sh/nacnud/bin:$HOME/.sh/bin:$PATH
+
+# add convience aliases
+OS=`uname`
+if [ $OS = "Linux" ]; then 
+  LSColorFlag="--color=auto"
+elif [ $OS = "Darwin" ]; then
+  LSColorFlag="-G"
+fi 
+
+alias ls="ls $LSColorFlag"
+alias la="ls -a"
+alias ll="ls -lh"
+alias lal="ls -lah"
+alias l="ls -1"
+
+alias ..="cd .."
+
+# color code man pages
+man() {
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+      man "$@"
+}

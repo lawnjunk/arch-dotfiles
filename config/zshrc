@@ -1,0 +1,19 @@
+# Path to nacnud shell lib
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+# setup zsh-complettions
+fpath=(/usr/local/share/zsh-completions $fpath)
+# load oh-my-zsh plugins
+plugins=(git)
+plugins=(colorize)
+plugins=(zsh-syntax-highlighting)
+source $ZSH/oh-my-zsh.sh
+
+# Path to nacnud shell conf
+export MESH=$HOME/.sh/nacnud/lib
+source $MESH/zconfig.zsh
+source $MESH/exports.sh
+source $MESH/alias.sh
+
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+[ ! -n "$TMUX" ] && tmux -2
