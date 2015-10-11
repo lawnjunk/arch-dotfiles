@@ -47,6 +47,7 @@ plant: backup
 	cp -f $(DOTREPO)/gitconfig  ${HOME}/.gitconfig
 	cp -f $(DOTREPO)/tmux.conf  ${HOME}/.tmux.conf
 	cp -f $(DOTREPO)/tern-project  ${HOME}/.tern-project
+	mkdir $(DOTREPO)/sh/
 	cp -rf $(DOTREPO)/sh/  ${HOME}/.sh/*
 	cp -f $(DOTREPO)/psqlrc  $(HOME)/.psqlrc
 	cp -f $(DOTREPO)/alias  $(HOME)/.alias
