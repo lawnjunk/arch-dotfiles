@@ -1,6 +1,5 @@
 arch linux dotfiles
 ===================
-
 a repository for personal configuration files.  
 
 ## Makefile Usage
