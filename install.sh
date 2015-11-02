@@ -1,25 +1,49 @@
 #!/usr/bin/env bash
 
+DOTDOTPATHSCONF=$HOME/.dotdot.conf
+
+if [ ! -f $DOTDOTPATHSCONF ]; then 
+  echo "Creating $HOME/.dotdot.conf"
+  touch $DOTDOTPATHSCONF
+fi
+
 # setup colors
+echo "\$1: $1 \$2: $2 \$3: $3"
 
-# red green blue yello magenta white cyan 
-blk="\0x1b[90m"
-red="\0x1b[91m"
-grn="\0x1b[92m"
-ylw="\0x1b[93m"
-blu="\0x1b[94m"
-pnk="\0x1b[95m"
-cyn="\0x1b[96m"
-wht="\0x1b[97m"
+# flags 
+# --gather -g
+# --plant -p
+# --add -a
+# --delete -d
 
-CONFIGPATHCONF=confpath.conf
+[ $# -lt 1 ] && exit -1  
 
 
-cat $CONFIGPATHCONF|  while read line; do 
-  key=$(echo $line | cut -d "=" -f 1)
-  value=$(echo $line | cut -d "=" -f 2)
+if [ $1 = "--gather" ] || [ $1 = "-g" ]; then 
+  echo -e "ENTER GATHER SUBROUTINE"
+fi 
 
-  echo "key: $key"
-  echo "value: $value"
-done
+if [ $1 = "--plant" ] || [ $1 = "-p" ]; then 
+  echo "ENTER PLANT SUBROUTINE"
+fi 
 
+if [ $1 = "--add" ] || [ $1 = "-a" ]; then 
+  echo "ENTER ADD SUBROUTINE"
+  #$1 -a $2 name $3 path
+  
+  echo "$2=$3" >> $DOTDOTPATHSCONF
+fi 
+
+if [ $1 = "--delete" ] || [ $1 = "-d" ]; then 
+  echo "ENTER DELETE SUBROUTINE"
+fi 
+
+
+#cat $configpathconf|  while read line; do 
+  #key=$(echo $line | cut -d "=" -f 1)
+  #value=$(echo $line | cut -d "=" -f 2)
+
+  #handle $key $value
+  ##echo "key: $key"
+  ##echo "value: $value"
+#done
