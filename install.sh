@@ -73,7 +73,10 @@ if [ $1 = "--add" ] || [ $1 = "-a" ]; then
   abspath=$(getAbsolutePath $dotconfpath)
   fexists $abspath 
 
+  abspath=$(echo $abspath | sed -e "s:$HOME:\$HOME:")
+
   echo "$dotkeyname=$abspath" >> $DOTDOTPATHSCONF
+  echo "adding PATH $abspath for key $dotkeyname"
 fi 
 
 if [ $1 = "--delete" ] || [ $1 = "-d" ]; then 
@@ -82,6 +85,7 @@ fi
 
 if [ $1 = "--list" ] || [ $1 = "-l" ]; then 
   echo "ENTER DELETE SUBROUTINE"
+  cat $DOTDOTPATHSCONF
 fi 
 
 
