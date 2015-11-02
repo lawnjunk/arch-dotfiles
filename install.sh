@@ -11,3 +11,15 @@ blu="\0x1b[94m"
 pnk="\0x1b[95m"
 cyn="\0x1b[96m"
 wht="\0x1b[97m"
+
+$CONFIGPATHCONF=./confpath.conf
+
+
+while read line; do 
+  key=$(echo $line | cut -d "=" -f 1)
+  value=$(echo $line | cut -d "=" -f 2)
+
+  echo "key: $key"
+  echo "value: $value"
+done
+
