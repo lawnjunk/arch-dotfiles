@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # setup colors
 
@@ -12,10 +12,10 @@ pnk="\0x1b[95m"
 cyn="\0x1b[96m"
 wht="\0x1b[97m"
 
-$CONFIGPATHCONF=./confpath.conf
+CONFIGPATHCONF=confpath.conf
 
 
-while read line; do 
+cat $CONFIGPATHCONF|  while read line; do 
   key=$(echo $line | cut -d "=" -f 1)
   value=$(echo $line | cut -d "=" -f 2)
 
