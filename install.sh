@@ -15,9 +15,33 @@ echo "\$1: $1 \$2: $2 \$3: $3"
 # --plant -p
 # --add -a
 # --delete -d
+getAbsolutePath(){
+  [[ -d $1 ]] && { cd "$1"; echo "$(pwd -P)"; } || 
+  { cd "$(dirname "$1")"; echo "$(pwd -P)/$(basename "$1")"; }
+}
+
+function fexists {
+  if [ $# -eq 0 ] ; then
+    echo "file path required"
+    exit -1 
+  fi
+
+  if [ ! -e $1 ]; then 
+    echo "$UERROR"
+    echo -e "\tfile not found at $1"
+    exit -1
+  fi
+}
+
+function notEmptyString(){  
+  if [ $# -ne 2 ] || [ -z $1 ]; then 
+    echo -e "$UERROR"
+    echo -e "\t$1 may not be empty"
+    exit -1
+  fi
+}
 
 [ $# -lt 1 ] && exit -1  
-
 
 if [ $1 = "--gather" ] || [ $1 = "-g" ]; then 
   echo -e "ENTER GATHER SUBROUTINE"
@@ -28,10 +52,26 @@ if [ $1 = "--plant" ] || [ $1 = "-p" ]; then
 fi 
 
 if [ $1 = "--add" ] || [ $1 = "-a" ]; then 
-  echo "ENTER ADD SUBROUTINE"
   #$1 -a $2 name $3 path
-  
-  echo "$2=$3" >> $DOTDOTPATHSCONF
+  UERROR="USAGE ERROR: --add [key] [./file/path]"
+  echo "ENTER ADD SUBROUTINE"
+
+  # check num args = 3
+  if [ $# -ne 3 ]; then 
+    echo $UERROR
+    exit -1
+  fi
+
+  # check key != 
+  dotkeyname=$2
+  notEmptyString $dotkeyname "[key]"
+
+  dotconfpath=$3
+  notEmptyString $dotconfpath "[./file/path]"
+  abspath=$(getAbsolutePath $dotconfpath)
+  fexists $abspath 
+
+  echo "$dotkeyname=$abspath" >> $DOTDOTPATHSCONF
 fi 
 
 if [ $1 = "--delete" ] || [ $1 = "-d" ]; then 
