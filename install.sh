@@ -15,6 +15,8 @@ echo "\$1: $1 \$2: $2 \$3: $3"
 # --plant -p
 # --add -a
 # --delete -d
+# --list -l
+
 getAbsolutePath(){
   [[ -d $1 ]] && { cd "$1"; echo "$(pwd -P)"; } || 
   { cd "$(dirname "$1")"; echo "$(pwd -P)/$(basename "$1")"; }
@@ -75,6 +77,10 @@ if [ $1 = "--add" ] || [ $1 = "-a" ]; then
 fi 
 
 if [ $1 = "--delete" ] || [ $1 = "-d" ]; then 
+  echo "ENTER DELETE SUBROUTINE"
+fi 
+
+if [ $1 = "--list" ] || [ $1 = "-l" ]; then 
   echo "ENTER DELETE SUBROUTINE"
 fi 
 
